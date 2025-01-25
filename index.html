@@ -29,6 +29,19 @@
             text-align: center;
             position: relative;
             padding-top: 2rem;
+            animation: cameraShutterIntro 1.5s ease-in-out;
+        }
+
+        @keyframes cameraShutterIntro {
+            0% {
+                clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+            }
+            50% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
         }
 
         .content {
