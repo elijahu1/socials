@@ -16,12 +16,15 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .content {
-            position: relative;
             color: white;
             text-align: center;
-            padding: 20px;
+            margin-bottom: 2rem;
         }
         .content h1 {
             font-size: 10rem;
@@ -31,8 +34,30 @@
             margin: 0;
             line-height: 1;
         }
-
-            .
+        .providers {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .provider-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+        .provider-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .provider-icon {
+            max-width: 50px;
+            max-height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -41,8 +66,7 @@
             <h1>Bad Bunny</h1>
             <p>Welcome to the ultimate Bad Bunny fanpage!</p>
         </div>
-
-          <div class="providers">
+        <div class="providers">
             <a href="#" class="provider-button">
               <img src="apple-music.png" alt="Apple Music" class="provider-icon">
             </a>
@@ -67,8 +91,7 @@
             <a href="#" class="provider-button">
               <img src="merch.png" alt="Merch" class="provider-icon">
             </a>
-          </div>
-
+        </div>
     </div>
 </body>
 </html>
