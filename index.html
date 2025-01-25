@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bad Bunny fanpage featuring music platforms, a tribute to Benito, and a cool camera shutter animation. Perfect for fans of the Puerto Rican icon.">
+    <meta name="keywords" content="Bad Bunny, Benito, Puerto Rican artist, music platforms, fanpage, camera shutter transition">
+    <meta name="author" content="SysAdmin | Hivetx">
     <title>Bad Bunny Fanpage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         body, html {
             height: 100%;
             margin: 0;
+            font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
+
         .bg {
             background-image: url('bg.jpg');
             height: 100%;
@@ -19,26 +24,34 @@
             background-size: cover;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            text-align: center;
         }
+
         .content {
-          color: white;
-          text-align: center;
-          margin: 0; /* Remove bottom margin */
-          position: absolute; /* Move content to a specific position */
-          top: 2rem; /* Adjust distance from the top */
-          left: 50%; /* Center horizontally */
-          transform: translateX(-50%); /* Center alignment adjustment */
-      }
+            color: white;
+            margin: 0;
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         .content h1 {
-            font-size: 4rem; /* Reduced font size */
-            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
             font-weight: 900;
             text-transform: uppercase;
             margin: 0;
-            line-height: 1;
+            line-height: 1.2;
+        }
+
+        .description {
+            color: white;
+            font-size: 1rem;
+            margin: 1rem 0;
+            position: relative;
+            text-align: center;
         }
 
         .providers {
@@ -46,101 +59,145 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
+
         .provider-button {
-          display: inline-flex; /* Changed to inline-flex to avoid layout quirks */
-          align-items: center;
-          justify-content: center;
-          font-size: 3rem;
-          color: white;
-          text-decoration: none; /* This removes any underline */
-          line-height: 0; /* Ensures no extra spacing is added */
-          transition: transform 0.3s ease;
-      }
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-decoration: none;
+            line-height: 0;
+            transition: transform 0.3s ease;
+        }
 
         .provider-button:hover {
             transform: scale(1.2);
         }
+
+        .footer {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         .camera-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: #000;
-          z-index: 9999;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          opacity: 0;
-          animation: cameraLensOpen 1s ease-in-out forwards;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: cameraLensOpen 1s ease-in-out forwards;
         }
 
         .camera-lens {
-          width: 0;
-          height: 0;
-          border-radius: 50%;
-          background-color: #fff;
-          animation: cameraLensClose 1s ease-in-out forwards 1s;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: #fff;
+            animation: cameraLensClose 1s ease-in-out forwards 1s;
         }
 
         @keyframes cameraLensClose {
-          0% {
-            width: 0;
-            height: 0;
-          }
-          100% {
-            width: 200vmax;
-            height: 200vmax;
-          }
+            0% {
+                width: 0;
+                height: 0;
+            }
+            100% {
+                width: 200vmax;
+                height: 200vmax;
+            }
         }
 
         @keyframes cameraLensOpen {
-          0% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-          }
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .providers {
+                gap: 1rem;
+            }
+
+            .provider-button {
+                font-size: 2rem;
+            }
+
+            .footer {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="bg">
         <div class="camera-container">
-          <div class="camera-lens"></div>
+            <div class="camera-lens"></div>
         </div>
         <div class="content">
             <h1>Bad Bunny</h1>
             <p>Welcome to the ultimate Bad Bunny fanpage!</p>
         </div>
+        <div class="description">
+            <p>SysAdmin | Linux Enthusiast | Hivetx</p>
+        </div>
         <div class="providers">
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-apple"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-spotify"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-amazon"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-deezer"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-pandora"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-brands fa-tidal"></i>
-          </a>
-          <a href="#" class="provider-button">
-            <i class="fa-solid fa-shirt"></i>
-          </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-apple"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-spotify"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-amazon"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-deezer"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-pandora"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-brands fa-tidal"></i>
+            </a>
+            <a href="#" class="provider-button">
+                <i class="fa-solid fa-shirt"></i>
+            </a>
+        </div>
+        <div class="footer">
+            <p>Inspired by <a href="#">Benito</a></p>
         </div>
     </div>
+    <script>
+        // Show a welcome alert with information about the camera shutter transition
+        window.onload = function() {
+            alert("The Camera Shutter Transition features an awesome animation of a camera's shutter closing and opening. This is perfect to use as a transition in your next edit, and because it has an embedded alpha channel, using it is super simple.");
+        };
+    </script>
 </body>
 </html>
