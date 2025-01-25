@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<<html lang="en,es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bad Bunny fanpage featuring music platforms, a tribute to Benito, and a cool camera shutter animation. Perfect for fans of the Puerto Rican icon.">
-    <meta name="keywords" content="Bad Bunny, Benito, Puerto Rican artist, music platforms, fanpage, camera shutter transition">
-    <meta name="author" content="SysAdmin | Hivetx">
-    <title>Bad Bunny Fanpage</title>
+    <meta name="description" content="Elijah U. - Cloud Engineer | Linux Enthusiast | Infrastructure Builder">
+    <meta name="keywords" content="Elijah U., Cloud Engineer, Linux, DevOps, AWS, Infrastructure as Code, Cloud Architecture">
+    <meta name="author" content="Elijah U.">
+    <title>Elijah U. - Cloud Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         body, html {
@@ -14,23 +14,21 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
+            background-color: #f0f2f5;
         }
 
         .bg {
-            background-image: url('bg.jpg');
             height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
+            position: relative;
         }
 
         .content {
-            color: white;
+            color: #333;
             margin: 0;
             position: absolute;
             top: 2rem;
@@ -47,89 +45,41 @@
         }
 
         .description {
-            color: white;
-            font-size: 1rem;
+            color: #555;
+            font-size: 0.9rem;
             text-align: center;
-            margin-bottom: 0.2rem; /* Significantly reduced margin */
+            max-width: 600px;
+            margin: 1rem auto;
+            padding: 0 1rem;
         }
 
         .providers {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
             gap: 1.5rem;
-            margin: auto;
+            margin: 2rem auto;
         }
 
         .provider-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+            font-size: 2.5rem;
+            color: #333;
             text-decoration: none;
-            line-height: 0;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .provider-button:hover {
             transform: scale(1.2);
+            color: #007bff;
         }
 
         .footer {
-            color: white;
-            font-size: 1rem;
+            color: #777;
+            font-size: 0.8rem;
             margin-bottom: 1rem;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .camera-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            animation: cameraLensOpen 1s ease-in-out forwards;
-        }
-
-        .camera-lens {
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background-color: #fff;
-            animation: cameraLensClose 1s ease-in-out forwards 1s;
-        }
-
-        @keyframes cameraLensClose {
-            0% {
-                width: 0;
-                height: 0;
-            }
-            100% {
-                width: 200vmax;
-                height: 200vmax;
-            }
-        }
-
-        @keyframes cameraLensOpen {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
         }
 
         @media (max-width: 768px) {
@@ -145,52 +95,44 @@
                 font-size: 2rem;
             }
 
-            .footer {
-                font-size: 0.9rem;
+            .description {
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="bg">
-        <div class="camera-container">
-            <div class="camera-lens"></div>
-        </div>
         <div class="content">
-            <h1>ELiJaH</h1>
+            <h1>Elijah U.</h1>
         </div>
         <div class="description">
-            <p>SysAdmin | Linux Enthusiast | Hivetx</p>
-        </div>
-        <div class="providers">
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-apple"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-spotify"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-amazon"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-deezer"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-pandora"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-brands fa-tidal"></i>
-            </a>
-            <a href="#" class="provider-button">
-                <i class="fa-solid fa-shirt"></i>
-            </a>
-        </div>
-        <div class="footer">
-            <p>Inspirado por <a href="https://en.wikipedia.org/wiki/Bad_Bunny">Benito</a></p>
-        </div>
-    </div>
+          <p>🚀 cLoUd eNgInEeR | 🐧 LiNuX eNtHuSiAsT | 🛠️ iNfRaStRuCtUrE bUiLdEr<br>
+          CrEaNdO sOlUcIoNeS dE nUbE eN @hivetxhq | NoGrey SaFeTy TeCh | EmBaJaDoR dE gEnZtEcHiEs</p>
+      </div>
+      <div class="providers">
+          <a href="https://www.linkedin.com/in/elijahu" target="_blank" class="provider-button">
+              <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/elijahu1" target="_blank" class="provider-button">
+              <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://x.com/elijahu_" target="_blank" class="provider-button">
+              <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://www.xing.com/profile/elijah-u" target="_blank" class="provider-button">
+              <i class="fa-brands fa-xing"></i>
+          </a>
+          <a href="https://open.spotify.com/artist/elijahu" target="_blank" class="provider-button">
+              <i class="fa-brands fa-spotify"></i>
+          </a>
+          <a href="https://elijahu.me" target="_blank" class="provider-button">
+              <i class="fa-solid fa-globe"></i>
+          </a>
+      </div>
+      <div class="footer">
+          <p>© 2024 eLiJaH u. | sOlUcIoNeS dE iNfRaEsTrUcTuRa</p>
+      </div>
+  </div>
 </body>
 </html>
