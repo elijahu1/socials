@@ -34,6 +34,7 @@
             margin: 0;
             line-height: 1;
         }
+<<<<<<< HEAD
         .providers {
             display: flex;
             justify-content: center;
@@ -58,10 +59,56 @@
             max-width: 50px;
             max-height: 50px;
         }
+        .camera-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          z-index: 9999;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          opacity: 0;
+          animation: cameraLensOpen 1s ease-in-out forwards;
+        }
+
+        .camera-lens {
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background-color: #fff;
+          animation: cameraLensClose 1s ease-in-out forwards 1s;
+        }
+
+        @keyframes cameraLensClose {
+          0% {
+            width: 0;
+            height: 0;
+          }
+          100% {
+            width: 200vmax;
+            height: 200vmax;
+          }
+        }
+
+        @keyframes cameraLensOpen {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
     </style>
 </head>
 <body>
     <div class="bg">
+        <div class="camera-container">
+          <div class="camera-lens"></div>
+        </div>
         <div class="content">
             <h1>Bad Bunny</h1>
             <p>Welcome to the ultimate Bad Bunny fanpage!</p>
