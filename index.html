@@ -43,13 +43,16 @@
             gap: 2rem;
         }
         .provider-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            transition: transform 0.3s ease;
-        }
+          display: inline-flex; /* Changed to inline-flex to avoid layout quirks */
+          align-items: center;
+          justify-content: center;
+          font-size: 3rem;
+          color: white;
+          text-decoration: none; /* This removes any underline */
+          line-height: 0; /* Ensures no extra spacing is added */
+          transition: transform 0.3s ease;
+      }
+
         .provider-button:hover {
             transform: scale(1.2);
         }
