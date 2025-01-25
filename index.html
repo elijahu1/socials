@@ -10,11 +10,22 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
+        :root {
+            --primary-color: white;
+            --bg-opacity: 0.7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body, html {
             height: 100%;
-            margin: 0;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
+            background-color: #000;
         }
 
         .bg {
@@ -29,8 +40,9 @@
             align-items: center;
             text-align: center;
             position: relative;
-            padding-top: 2rem;
+            padding: 1rem;
             animation: cameraShutterIntro 1.5s ease-in-out;
+            background-blend-mode: overlay;
         }
 
         @keyframes cameraShutterIntro {
@@ -46,61 +58,66 @@
         }
 
         .content {
-            color: white;
-            position: absolute;
-            top: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
         .content h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 900;
             text-transform: uppercase;
-            margin: 0;
             line-height: 1.2;
         }
 
         .description {
-            color: white;
-            font-size: 1rem;
-            text-align: center;
+            color: var(--primary-color);
+            font-size: clamp(0.8rem, 3vw, 1rem);
             max-width: 700px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
         }
 
         .providers {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .provider-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            color: white;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: var(--primary-color);
             text-decoration: none;
             transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 3.5rem;
+            height: 3.5rem;
         }
 
         .provider-button:hover {
             transform: scale(1.2);
+            background: rgba(255,255,255,0.3);
         }
 
         .footer {
-            color: white;
-            font-size: 1rem;
+            color: var(--primary-color);
+            font-size: 0.8rem;
             position: absolute;
             bottom: 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        @media (max-width: 768px) {
-            .content h1 {
-                font-size: 2rem;
+        @media (max-width: 480px) {
+            .bg {
+                justify-content: space-between;
+                padding: 0.5rem;
             }
 
             .providers {
@@ -108,12 +125,14 @@
             }
 
             .provider-button {
-                font-size: 2rem;
+                width: 2.5rem;
+                height: 2.5rem;
             }
+        }
 
-            .description {
-                font-size: 0.9rem;
-                max-width: 90%;
+        @media (min-width: 1200px) {
+            .bg {
+                background-attachment: fixed;
             }
         }
     </style>
