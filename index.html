@@ -59,7 +59,10 @@
 
         .content {
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .content h1 {
@@ -115,9 +118,21 @@
         }
 
         @media (max-width: 480px) {
+            .content {
+                top: 1rem;
+            }
+
             .bg {
                 justify-content: space-between;
                 padding: 0.5rem;
+            }
+
+            .content h1 {
+                font-size: 1.5rem;
+            }
+
+            .description {
+                font-size: 0.7rem;
             }
 
             .providers {
@@ -127,6 +142,7 @@
             .provider-button {
                 width: 2.5rem;
                 height: 2.5rem;
+                font-size: 1.2rem;
             }
         }
 
