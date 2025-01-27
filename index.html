@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Elijah U. - Cloud Engineer | Linux Enthusiast | Infrastructure Builder">
-    <meta name="keywords" content="Elijah U., Cloud Engineer, Linux, DevOps, AWS, Elijah Udom, Infrastructure as Code, Cloud Architecture">
-    <meta name="author" content="Elijah U.">
-    <title>eLiJaH u. - cLoUd eNgInEeR</title>
+    <meta name="description" content="Elijah Udom - Cloud Infrastructure Engineer | Linux Specialist | DevOps Practitioner">
+    <meta name="keywords" content="Cloud Engineering, AWS Certified, Linux Administration, Infrastructure as Code, Cloud Security">
+    <meta name="author" content="Elijah Udom">
+    <title>Elijah Udom - Cloud Infrastructure Engineer</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
@@ -29,7 +29,7 @@
         }
 
         .bg {
-            background-image: url('bg.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('bg.jpg');
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
@@ -46,15 +46,9 @@
         }
 
         @keyframes cameraShutterIntro {
-            0% {
-                clip-path: circle(0%);
-            }
-            80% {
-                clip-path: circle(150%);
-            }
-            100% {
-                clip-path: circle(150%);
-            }
+            0% { clip-path: circle(0%); }
+            80% { clip-path: circle(150%); }
+            100% { clip-path: circle(150%); }
         }
 
         .content {
@@ -78,6 +72,7 @@
             max-width: 700px;
             margin-bottom: 1.5rem;
             padding: 0 1rem;
+            line-height: 1.5;
         }
 
         .providers {
@@ -108,6 +103,9 @@
             background: rgba(255,255,255,0.3);
         }
 
+        .fa-mastodon { color: #6364ff; }
+        .fa-bluesky { color: #1185fe; }
+
         .footer {
             color: var(--primary-color);
             font-size: 0.8rem;
@@ -117,15 +115,15 @@
             width: 100%;
         }
 
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
         @media (max-width: 480px) {
-            .content h1 {
-                font-size: clamp(2rem, 5vw, 3rem);
-            }
-
-            .description {
-                font-size: clamp(0.8rem, 3vw, 1rem);
-            }
-
+            .content h1 { font-size: clamp(2rem, 5vw, 3rem); }
+            .description { font-size: clamp(0.8rem, 3vw, 1rem); }
             .provider-button {
                 font-size: clamp(1.5rem, 5vw, 2.5rem);
                 width: 3.5rem;
@@ -134,19 +132,20 @@
         }
 
         @media (min-width: 1200px) {
-            .bg {
-                background-attachment: fixed;
-            }
+            .bg { background-attachment: fixed; }
         }
     </style>
 </head>
 <body>
     <div class="bg">
         <div class="content">
-            <h1>eLiJaH uDoM</h1>
+            <h1>Elijah Udom</h1>
         </div>
         <div class="description">
-            <p>🚀 Cloud Engineer | 🐧 Linux Enthusiast | 🛠️ Infrastructure BuilderCreating cloud solutions at @hivetxhq | NoGrey Safety Tech | GenZTechies Ambassador</p>
+            <p>Cloud Infrastructure Engineer | Linux Systems Architect<br>
+            DevOps Practitioner & Cloud Security Specialist<br>
+            Building scalable solutions @HiveTx | Security automation @NoGreySafetyTech<br>
+            GenZTechies Ambassador | Advocate for Infrastructure as Code excellence</p>
         </div>
         <div class="providers">
             <a href="https://www.linkedin.com/in/elijahu" target="_blank" class="provider-button">
@@ -157,6 +156,12 @@
             </a>
             <a href="https://x.com/elijahu_" target="_blank" class="provider-button">
                 <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://mastodon.social/@elijahu" target="_blank" class="provider-button">
+                <i class="fa-brands fa-mastodon"></i>
+            </a>
+            <a href="https://bsky.app/profile/elijahu.bsky.social" target="_blank" class="provider-button">
+                <i class="fa-solid fa-cloud fa-bluesky"></i>
             </a>
             <a href="https://www.xing.com/profile/elijah_udom" target="_blank" class="provider-button">
                 <i class="fa-brands fa-xing"></i>
@@ -169,7 +174,7 @@
             </a>
         </div>
         <div class="footer">
-            <p>InSpIrAdO pOr <a href="https://en.wikipedia.org/wiki/Bad_Bunny" style="color: white;">bEnItO</a></p>
+            <p>Inspirado por <a href="https://en.wikipedia.org/wiki/Bad_Bunny">BeNiTO</a> 🇵🇷</p>
         </div>
     </div>
 </body>
