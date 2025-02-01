@@ -61,36 +61,40 @@ body, html {
     margin-bottom: 2rem;
 }
 
-.providers {
+.links {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
-    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 400px;
 }
 
-.provider-button {
-    display: inline-flex;
+.link-card {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: transform 0.3s ease, background 0.3s ease;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    width: 3.5rem;
-    height: 3.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.provider-button:hover {
-    transform: scale(1.2);
+.link-card:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: translateX(10px);
 }
 
-.fa-mastodon { color: #6364ff; }
-.fa-bluesky { color: #1185fe; }
+.link-card i {
+    font-size: 1.5rem;
+}
+
+.link-card span {
+    font-size: 1rem;
+    font-weight: 500;
+}
 
 .footer {
     color: var(--primary-color);
@@ -110,10 +114,14 @@ body, html {
 @media (max-width: 480px) {
     .content h1 { font-size: clamp(2rem, 5vw, 3rem); }
     .description { font-size: clamp(0.8rem, 3vw, 1rem); }
-    .provider-button {
-        font-size: clamp(1.5rem, 5vw, 2.5rem);
-        width: 3.5rem;
-        height: 3.5rem;
+    .link-card {
+        padding: 0.8rem;
+    }
+    .link-card i {
+        font-size: 1.2rem;
+    }
+    .link-card span {
+        font-size: 0.9rem;
     }
 }
 
