@@ -1,125 +1,122 @@
+:root {
+    --primary-color: white;
+    --bg-opacity: 0.7;
+}
 
-        :root {
-            --primary-color: white;
-            --bg-opacity: 0.7;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+body, html {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    background-color: #000;
+}
 
-        body, html {
-            height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-            background-color: #000;
-        }
+.bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 1rem;
+    animation: cameraShutterIntro 1.5s ease-in-out;
+    background-blend-mode: overlay;
+}
 
-        .bg {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('bg.jpg');
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 1rem;
-            animation: cameraShutterIntro 1.5s ease-in-out;
-            background-blend-mode: overlay;
-        }
+@keyframes cameraShutterIntro {
+    0% { clip-path: circle(0%); }
+    80% { clip-path: circle(150%); }
+    100% { clip-path: circle(150%); }
+}
 
-        @keyframes cameraShutterIntro {
-            0% { clip-path: circle(0%); }
-            80% { clip-path: circle(150%); }
-            100% { clip-path: circle(150%); }
-        }
+.content {
+    color: var(--primary-color);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-        .content {
-            color: var(--primary-color);
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
 
-        .content h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
+.description {
+    color: var(--primary-color);
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
 
-        .description {
-            color: var(--primary-color);
-            font-size: clamp(0.8rem, 3vw, 1rem);
-            max-width: 700px;
-            margin-bottom: 1.5rem;
-            padding: 0 1rem;
-            line-height: 1.5;
-        }
+.providers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
 
-        .providers {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+.provider-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+}
 
-        .provider-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            width: 3.5rem;
-            height: 3.5rem;
-        }
+.provider-button:hover {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.2);
+}
 
-        .provider-button:hover {
-            transform: scale(1.2);
-            background: rgba(255,255,255,0.3);
-        }
+.fa-mastodon { color: #6364ff; }
+.fa-bluesky { color: #1185fe; }
 
-        .fa-mastodon { color: #6364ff; }
-        .fa-bluesky { color: #1185fe; }
+.footer {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
 
-        .footer {
-            color: var(--primary-color);
-            font-size: 0.8rem;
-            position: absolute;
-            bottom: 1rem;
-            text-align: center;
-            width: 100%;
-        }
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .footer a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+@media (max-width: 480px) {
+    .content h1 { font-size: clamp(2rem, 5vw, 3rem); }
+    .description { font-size: clamp(0.8rem, 3vw, 1rem); }
+    .provider-button {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+}
 
-        @media (max-width: 480px) {
-            .content h1 { font-size: clamp(2rem, 5vw, 3rem); }
-            .description { font-size: clamp(0.8rem, 3vw, 1rem); }
-            .provider-button {
-                font-size: clamp(1.5rem, 5vw, 2.5rem);
-                width: 3.5rem;
-                height: 3.5rem;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .bg { background-attachment: fixed; }
-        }
+@media (min-width: 1200px) {
+    .bg { background-attachment: fixed; }
+}
