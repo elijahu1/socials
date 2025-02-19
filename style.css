@@ -128,3 +128,99 @@ body, html {
 @media (min-width: 1200px) {
     .bg { background-attachment: fixed; }
 }
+
+/* GitHub Icon - Tail Wagging */
+.links .link-card:nth-child(3) i {
+    animation: wag 2s ease-in-out infinite;
+}
+
+@keyframes wag {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+}
+
+/* LinkedIn Icon - Bouncing */
+.links .link-card:nth-child(2) i {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Twitter Icon - Flying */
+.links .link-card:nth-child(4) i {
+    animation: fly 3s ease-in-out infinite;
+}
+
+@keyframes fly {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(5px, -10px);
+    }
+    50% {
+        transform: translate(-5px, -5px);
+    }
+    75% {
+        transform: translate(5px, 0);
+    }
+}
+
+/* Mastodon Icon - Wobbling */
+.links .link-card:nth-child(5) i {
+    animation: wobble 2s ease-in-out infinite;
+}
+
+@keyframes wobble {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+/* Bluesky Icon - Floating */
+.links .link-card:nth-child(6) i {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Xing Icon - Pulsing */
+.links .link-card:nth-child(7) i {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
