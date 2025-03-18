@@ -129,7 +129,8 @@ body, html {
     .bg { background-attachment: fixed; }
 }
 
-/* GitHub Icon - Tail Wagging */
+/*
+ GitHub Icon - Tail Wagging 
 .links .link-card:nth-child(3) i {
     animation: wag 2s ease-in-out infinite;
 }
@@ -146,7 +147,7 @@ body, html {
     }
 }
 
-/* LinkedIn Icon - Bouncing */
+/* LinkedIn Icon - Bouncing 
 .links .link-card:nth-child(2) i {
     animation: bounce 2s ease-in-out infinite;
 }
@@ -160,7 +161,7 @@ body, html {
     }
 }
 
-/* Twitter Icon - Flying */
+/* Twitter Icon - Flying 
 .links .link-card:nth-child(4) i {
     animation: fly 3s ease-in-out infinite;
 }
@@ -180,7 +181,7 @@ body, html {
     }
 }
 
-/* Mastodon Icon - Wobbling */
+/* Mastodon Icon - Wobbling 
 .links .link-card:nth-child(5) i {
     animation: wobble 2s ease-in-out infinite;
 }
@@ -197,7 +198,7 @@ body, html {
     }
 }
 
-/* Bluesky Icon - Floating */
+/* Bluesky Icon - Floating 
 .links .link-card:nth-child(6) i {
     animation: float 4s ease-in-out infinite;
 }
@@ -211,7 +212,7 @@ body, html {
     }
 }
 
-/* Xing Icon - Pulsing */
+/* Xing Icon - Pulsing 
 .links .link-card:nth-child(7) i {
     animation: pulse 2s ease-in-out infinite;
 }
@@ -224,3 +225,5 @@ body, html {
         transform: scale(1.1);
     }
 }
+
+*/ 
