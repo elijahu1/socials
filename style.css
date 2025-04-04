@@ -1,229 +1,297 @@
-:root {
-    --primary-color: white;
-    --bg-opacity: 0.7;
-}
+  :root {
+            --primary-color: #f5f5f7;
+            --secondary-color: #86868b;
+            --accent-color: #0071e3;
+            --bg-color: #000000;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-hover: rgba(255, 255, 255, 0.16);
+            --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --transition-speed: 0.3s;
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body, html {
-    height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    overflow: hidden;
-    background-color: #000;
-}
+        body, html {
+            height: 100%;
+            font-family: var(--font-primary);
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-.bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    padding: 1rem;
-    animation: cameraShutterIntro 1.5s ease-in-out;
-    background-blend-mode: overlay;
-}
+        .bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('img/bg.jpg');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            animation: fadeIn 1s ease-out;
+            background-blend-mode: overlay;
+        }
 
-@keyframes cameraShutterIntro {
-    0% { clip-path: circle(0%); }
-    80% { clip-path: circle(150%); }
-    100% { clip-path: circle(150%); }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-.content {
-    color: var(--primary-color);
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
+        .content {
+            color: var(--primary-color);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.content h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
+        .content h1 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
 
-.description {
-    color: var(--primary-color);
-    font-size: clamp(0.8rem, 3vw, 1rem);
-    line-height: 1.5;
-    margin-bottom: 2rem;
-}
+        .description {
+            color: var(--secondary-color);
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.5;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
 
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    max-width: 400px;
-}
+        .description h4 {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
 
-.link-card {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--primary-color);
-    transition: background 0.3s ease, transform 0.3s ease;
-}
+        .description p {
+            margin-bottom: 0.75rem;
+        }
 
-.link-card:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(10px);
-}
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
 
-.link-card i {
-    font-size: 1.5rem;
-}
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 1.2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all var(--transition-speed) ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
 
-.link-card span {
-    font-size: 1rem;
-    font-weight: 500;
-}
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                          rgba(255, 255, 255, 0) 0%, 
+                          rgba(255, 255, 255, 0.05) 50%, 
+                          rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
 
-.footer {
-    color: var(--primary-color);
-    font-size: 0.8rem;
-    position: absolute;
-    bottom: 1rem;
-    text-align: center;
-    width: 100%;
-}
+        .link-card:hover::before {
+            transform: translateX(100%);
+        }
 
-.footer a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .link-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-@media (max-width: 480px) {
-    .content h1 { font-size: clamp(2rem, 5vw, 3rem); }
-    .description { font-size: clamp(0.8rem, 3vw, 1rem); }
-    .link-card {
-        padding: 0.8rem;
-    }
-    .link-card i {
-        font-size: 1.2rem;
-    }
-    .link-card span {
-        font-size: 0.9rem;
-    }
-}
+        .link-card i, .link-card img {
+            font-size: 1.5rem;
+            z-index: 2;
+            color: var(--primary-color);
+            width: 24px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
 
-@media (min-width: 1200px) {
-    .bg { background-attachment: fixed; }
-}
+        .link-card img {
+            width: 24px;
+            height: 24px;
+        }
 
-/*
- GitHub Icon - Tail Wagging 
-.links .link-card:nth-child(3) i {
-    animation: wag 2s ease-in-out infinite;
-}
+        .link-card span {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            z-index: 2;
+        }
 
-@keyframes wag {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(15deg);
-    }
-    75% {
-        transform: rotate(-15deg);
-    }
-}
+        .footer {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            position: absolute;
+            bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+            padding: 0 1rem;
+        }
 
-/* LinkedIn Icon - Bouncing 
-.links .link-card:nth-child(2) i {
-    animation: bounce 2s ease-in-out infinite;
-}
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            position: relative;
+            transition: color var(--transition-speed) ease;
+        }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
+        .footer a:hover {
+            color: var(--accent-color);
+        }
 
-/* Twitter Icon - Flying 
-.links .link-card:nth-child(4) i {
-    animation: fly 3s ease-in-out infinite;
-}
+        .footer a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            left: 0;
+            bottom: -2px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-speed) ease;
+        }
 
-@keyframes fly {
-    0%, 100% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(5px, -10px);
-    }
-    50% {
-        transform: translate(-5px, -5px);
-    }
-    75% {
-        transform: translate(5px, 0);
-    }
-}
+        .footer a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
 
-/* Mastodon Icon - Wobbling 
-.links .link-card:nth-child(5) i {
-    animation: wobble 2s ease-in-out infinite;
-}
+        @media (max-width: 480px) {
+            .bg {
+                padding: 1rem;
+            }
+            .link-card {
+                padding: 0.75rem 1rem;
+            }
+            .link-card i {
+                font-size: 1.2rem;
+            }
+            .link-card span {
+                font-size: 0.9rem;
+            }
+        }
 
-@keyframes wobble {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(5deg);
-    }
-    75% {
-        transform: rotate(-5deg);
-    }
-}
+        @media (min-width: 1200px) {
+            .bg { 
+                background-attachment: fixed; 
+            }
+            .content {
+                padding: 2rem;
+            }
+        }
 
-/* Bluesky Icon - Floating 
-.links .link-card:nth-child(6) i {
-    animation: float 4s ease-in-out infinite;
-}
+        /* Focus styles for accessibility */
+        .link-card:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
+        /* Subtle animation for profile section */
+        @keyframes subtleFadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Xing Icon - Pulsing 
-.links .link-card:nth-child(7) i {
-    animation: pulse 2s ease-in-out infinite;
-}
+        .content h1 {
+            animation: subtleFadeIn 0.8s ease-out forwards;
+        }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
+        .description {
+            animation: subtleFadeIn 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
 
-*/ 
+        .links {
+            animation: subtleFadeIn 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* Individual card animations with slight delay between each */
+        .links .link-card {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .links .link-card:nth-child(1) {
+            animation: slideIn 0.5s ease-out 0.5s forwards;
+        }
+        .links .link-card:nth-child(2) {
+            animation: slideIn 0.5s ease-out 0.6s forwards;
+        }
+        .links .link-card:nth-child(3) {
+            animation: slideIn 0.5s ease-out 0.7s forwards;
+        }
+        .links .link-card:nth-child(4) {
+            animation: slideIn 0.5s ease-out 0.8s forwards;
+        }
+        .links .link-card:nth-child(5) {
+            animation: slideIn 0.5s ease-out 0.9s forwards;
+        }
+        .links .link-card:nth-child(6) {
+            animation: slideIn 0.5s ease-out 1.0s forwards;
+        }
+        .links .link-card:nth-child(7) {
+            animation: slideIn 0.5s ease-out 1.1s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
