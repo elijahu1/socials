@@ -27,7 +27,7 @@ body, html {
 
 .bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('img/bg.jpg');
-    height: 100%;
+    min-height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -40,6 +40,7 @@ body, html {
     padding: 2rem;
     animation: fadeIn 1s ease-out;
     background-blend-mode: overlay;
+    overflow-y: auto;
 }
 
 @keyframes fadeIn {
@@ -157,6 +158,7 @@ body, html {
     width: 100%;
     max-width: 360px;
     margin: 0 auto;
+    margin-bottom: 2.5rem; /* Added margin to create space between links and footer */
 }
 
 .link-card {
@@ -229,11 +231,10 @@ body, html {
 .footer {
     color: var(--secondary-color);
     font-size: 0.8rem;
-    position: absolute;
-    bottom: 1.5rem;
     text-align: center;
     width: 100%;
     padding: 0 1rem;
+    margin-top: auto; /* Push to bottom of content */
 }
 
 .footer a {
