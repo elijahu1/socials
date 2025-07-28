@@ -1,9 +1,8 @@
 name: Deploy to Production
-
 on:
   push:
     branches: [ main ]
-
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,15 +25,18 @@ jobs:
           if [ ! -d "socials" ]; then
             git clone https://github.com/elijahu1/socials.git
           fi
-
+          
           # Go into the cloned directory and pull the latest changes
           cd socials
+          git checkout main
           git pull origin main
-
+          
+          # Go back to the docker-compose directory
+          cd /home/${{ secrets.EC2_USER }}/social-prod
+          
           # Build and deploy
           docker-compose down
           docker-compose build --no-cache
           docker-compose up -d
           docker system prune -f
         EOF
-
