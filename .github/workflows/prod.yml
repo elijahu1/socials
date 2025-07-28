@@ -21,9 +21,20 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/${{ secrets.EC2_USER }}/social-prod
+          
+          # Clone the repository if it doesn't exist
+          if [ ! -d "socials" ]; then
+            git clone https://github.com/elijahu1/socials.git
+          fi
+
+          # Go into the cloned directory and pull the latest changes
+          cd socials
           git pull origin main
+
+          # Build and deploy
           docker-compose down
           docker-compose build --no-cache
           docker-compose up -d
           docker system prune -f
         EOF
+
