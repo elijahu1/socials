@@ -34,7 +34,7 @@ jobs:
               git pull origin main
               
               # Go back to the docker-compose directory
-              cd /home/$EC2_USER/social-prod
+              cd /home/ubuntu/social-prod
               
               # Build and deploy
               docker-compose build --no-cache
@@ -57,7 +57,7 @@ jobs:
           command: |
             ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
               # Navigate to the staging directory
-              cd /home/$EC2_USER/social-stage
+              cd /home/ubuntu/social-stage
               
               # Clone the repository if it doesn't exist
               if [ ! -d "socials" ]; then
