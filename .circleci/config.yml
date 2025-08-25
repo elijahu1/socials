@@ -23,18 +23,20 @@ jobs:
             ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
               cd /home/$EC2_USER/social-prod
               
-              # Clone repo if missing
+              # Clone the repository if it doesn't exist
               if [ ! -d "socials" ]; then
                 git clone https://github.com/elijahu1/socials.git
               fi
               
-              # Pull latest code
+              # Go into the cloned directory and pull the latest changes
               cd socials
               git checkout main
               git pull origin main
               
-              # Deploy with Docker
+              # Go back to the docker-compose directory
               cd /home/$EC2_USER/social-prod
+              
+              # Build and deploy
               docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
@@ -56,20 +58,23 @@ jobs:
           name: Deploy to Staging
           command: |
             ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
+              # Navigate to the staging directory
               cd /home/$EC2_USER/social-stage
               
-              # Clone repo if missing
+              # Clone the repository if it doesn't exist
               if [ ! -d "socials" ]; then
                 git clone https://github.com/elijahu1/socials.git
               fi
               
-              # Pull latest code
+              # Go into the cloned directory and pull the latest changes
               cd socials
               git checkout sub
               git pull origin sub
               
-              # Deploy with Docker
+              # Go back to the docker-compose directory
               cd /home/$EC2_USER/social-stage
+              
+              # Build and deploy
               docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
@@ -88,4 +93,3 @@ workflows:
           filters:
             branches:
               only: main
-
