@@ -37,7 +37,6 @@ jobs:
               cd /home/$EC2_USER/social-prod
               
               # Build and deploy
-              docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
             EOF
@@ -74,7 +73,6 @@ jobs:
               cd /home/ubuntu/social-stage
               
               # Build and deploy
-              docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
             EOF
