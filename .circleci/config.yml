@@ -40,7 +40,6 @@ jobs:
               docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
-              docker system prune -f
             EOF
 
   deploy-staging:
@@ -78,7 +77,6 @@ jobs:
               docker-compose down
               docker-compose build --no-cache
               docker-compose up -d
-              docker system prune -f
             EOF
 
 workflows:
