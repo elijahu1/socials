@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Deploy to Production
           command: |
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
               cd /home/$EC2_USER/social-prod
               
               # Clone repo if missing
@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Deploy to Staging
           command: |
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
               cd /home/$EC2_USER/social-stage
               
               # Clone repo if missing
