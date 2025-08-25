@@ -1,0 +1,91 @@
+version: 2.1
+
+executors:
+  ubuntu-executor:
+    docker:
+      - image: cimg/base:stable
+
+jobs:
+  deploy-production:
+    executor: ubuntu-executor
+    steps:
+      - checkout
+      - run:
+          name: Setup SSH
+          command: |
+            mkdir -p ~/.ssh
+            echo "$EC2_SSH_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy to Production
+          command: |
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+              cd /home/$EC2_USER/social-prod
+              
+              # Clone repo if missing
+              if [ ! -d "socials" ]; then
+                git clone https://github.com/elijahu1/socials.git
+              fi
+              
+              # Pull latest code
+              cd socials
+              git checkout main
+              git pull origin main
+              
+              # Deploy with Docker
+              cd /home/$EC2_USER/social-prod
+              docker-compose down
+              docker-compose build --no-cache
+              docker-compose up -d
+              docker system prune -f
+            EOF
+
+  deploy-staging:
+    executor: ubuntu-executor
+    steps:
+      - checkout
+      - run:
+          name: Setup SSH
+          command: |
+            mkdir -p ~/.ssh
+            echo "$EC2_SSH_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy to Staging
+          command: |
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+              cd /home/$EC2_USER/social-stage
+              
+              # Clone repo if missing
+              if [ ! -d "socials" ]; then
+                git clone https://github.com/elijahu1/socials.git
+              fi
+              
+              # Pull latest code
+              cd socials
+              git checkout sub
+              git pull origin sub
+              
+              # Deploy with Docker
+              cd /home/$EC2_USER/social-stage
+              docker-compose down
+              docker-compose build --no-cache
+              docker-compose up -d
+              docker system prune -f
+            EOF
+
+workflows:
+  version: 2
+  deploy-workflow:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: sub
+      - deploy-production:
+          filters:
+            branches:
+              only: main
+
