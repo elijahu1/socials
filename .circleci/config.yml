@@ -21,7 +21,7 @@ jobs:
           name: Deploy to Production
           command: |
             ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST \<< 'EOF'
-              cd /home/$EC2_USER/social-prod
+              cd /home/ubuntu/social-prod
               
               # Clone the repository if it doesn't exist
               if [ ! -d "socials" ]; then
@@ -71,7 +71,7 @@ jobs:
               git pull origin sub
               
               # Go back to the docker-compose directory
-              cd /home/$EC2_USER/social-stage
+              cd /home/ubuntu/social-stage
               
               # Build and deploy
               docker-compose down
