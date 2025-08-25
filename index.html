@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en,es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,30 @@
     <meta name="author" content="Elijah Udom">
     <title>Elijah Udom - Cloud Infrastructure Engineer</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
-
+    <link href="style.css" rel="stylesheet">
+    
 </head>
 <body>
+    <!-- Zen Loading Screen -->
+    <div id="loading-screen">
+        <div class="zen-loader">
+            <div class="zen-circle"></div>
+            <div class="zen-inner"></div>
+        </div>
+        <div class="loading-text">
+            <span>接続中</span>
+            <div class="dots">
+                <span>・</span>
+                <span>・</span>
+                <span>・</span>
+            </div>
+        </div>
+    </div>
+
     <div class="bg">
         <div class="content">
             <div class="profile">
@@ -23,16 +41,10 @@
             </div>
             <div class="description">
                 <h4>Hey there! I'm Elijah <span class="wave">👋</span></h4>
-                <p>DevOps Engineer | SysAdmin | AWS Solutions Architect. Check out my profile</p>
+                <p>DevOps Engineer | SysAdmin | AWS Solutions Architect</p>
                 <p>Let's build something amazing together! <span class="sparkle">✨</span></p>
             </div>
             <div class="links">
-              <!--
-                <a href="https://elijahu.me" target="_blank" class="link-card">
-                    <img src="img/mWhite.svg" width="24" height="24" alt="link icon"/>
-                    <span>My Websit</span>
-                </a>
-              -->
                 <a href="https://elijahu.me/portfolio" target="_blank" class="link-card">
                     <i class="fas fa-cog"></i>
                     <span>Projects</span>
@@ -41,7 +53,7 @@
                     <i class="fa-brands fa-linkedin"></i>
                     <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/elijahu1" target="blank" class="link-card">
+                <a href="https://github.com/elijahu1" target="_blank" class="link-card">
                     <i class="fa-brands fa-github"></i>
                     <span>GitHub</span>
                 </a>
@@ -49,7 +61,6 @@
                     <i class="fa-brands fa-x-twitter"></i>
                     <span>X (Twitter)</span>
                 </a>
-
                 <a href="https://bsky.app/profile/elijahu.bsky.social" target="_blank" class="link-card">
                     <i class="fa-solid fa-cloud"></i>
                     <span>Bluesky</span>
@@ -60,5 +71,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Kanji Signature -->
+    <div class="kanji-signature">エライジャ</div>
+
+    <script>
+        let loadingComplete = false;
+        let minTimeElapsed = false;
+
+        setTimeout(() => {
+            minTimeElapsed = true;
+            if (loadingComplete) {
+                hideLoadingScreen();
+            }
+        }, 2000);
+
+        window.addEventListener("load", function () {
+            loadingComplete = true;
+            if (minTimeElapsed) {
+                hideLoadingScreen();
+            }
+        });
+
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById("loading-screen");
+            const mainContent = document.querySelector(".bg");
+
+            loadingScreen.classList.add("fade-out");
+
+            setTimeout(() => {
+                mainContent.classList.add("fade-in");
+            }, 300);
+
+            setTimeout(() => {
+                loadingScreen.style.display = "none";
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
