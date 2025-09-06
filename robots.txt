@@ -1,3 +1,6 @@
+# robots.txt for social.elijahu.me
 User-agent: *
 Allow: /
-Host: social.elijahu.me
+
+Sitemap: https://social.elijahu.me/sitemap.xml
+
