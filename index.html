@@ -12,8 +12,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-    <link href="style.css" rel="stylesheet">
+    <!-- Add critical CSS for loading screen to prevent FOUC -->
+    <style>
+        /* Critical loading screen styles */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .zen-loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 2rem;
+        }
+        .zen-circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: #f8f8f8;
+            animation: zenSpin 2s linear infinite;
+        }
+        .zen-inner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            border-bottom-color: #f8f8f8;
+            animation: zenSpin 1.5s linear infinite reverse;
+        }
+        @keyframes zenSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #f8f8f8;
+            font-family: "Noto Sans JP", sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .dots span {
+            animation: fade 1.4s infinite;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        .dots span:nth-child(1) { animation-delay: 0s; }
+        .dots span:nth-child(2) { animation-delay: 0.3s; }
+        .dots span:nth-child(3) { animation-delay: 0.6s; }
+        @keyframes fade {
+            0%, 40% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        /* Hide main content initially */
+        .bg {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
     
+    <!-- Load main stylesheet -->
+    <link href="style.css" rel="stylesheet" media="all" onload="this.media='all'">
 </head>
 <body>
     <!-- Zen Loading Screen -->
@@ -76,22 +151,50 @@
     <div class="kanji-signature">エライジャ</div>
 
     <script>
+        // Enhanced loading handling
         let loadingComplete = false;
         let minTimeElapsed = false;
+        let cssLoaded = false;
+
+        // Check if CSS is loaded
+        function checkCSSLoaded() {
+            // Check if our main stylesheet is loaded by testing a unique style
+            const testEl = document.createElement('div');
+            testEl.style.position = 'absolute';
+            document.body.appendChild(testEl);
+            
+            // Test for a specific style from the external CSS
+            const bgColor = window.getComputedStyle(testEl).backgroundColor;
+            document.body.removeChild(testEl);
+            
+            // If we have non-default styles, CSS is loaded
+            if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
+                cssLoaded = true;
+                tryHideLoadingScreen();
+            } else {
+                // Check again shortly
+                setTimeout(checkCSSLoaded, 100);
+            }
+        }
+
+        function tryHideLoadingScreen() {
+            if (loadingComplete && minTimeElapsed && cssLoaded) {
+                hideLoadingScreen();
+            }
+        }
 
         setTimeout(() => {
             minTimeElapsed = true;
-            if (loadingComplete) {
-                hideLoadingScreen();
-            }
+            tryHideLoadingScreen();
         }, 2000);
 
         window.addEventListener("load", function () {
             loadingComplete = true;
-            if (minTimeElapsed) {
-                hideLoadingScreen();
-            }
+            tryHideLoadingScreen();
         });
+
+        // Start checking for CSS load
+        setTimeout(checkCSSLoaded, 100);
 
         function hideLoadingScreen() {
             const loadingScreen = document.getElementById("loading-screen");
@@ -100,6 +203,7 @@
             loadingScreen.classList.add("fade-out");
 
             setTimeout(() => {
+                mainContent.style.visibility = "visible";
                 mainContent.classList.add("fade-in");
             }, 300);
 
