@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-    <!-- Add critical CSS for loading screen to prevent FOUC -->
+    <!-- Critical CSS for loading screen -->
     <style>
         /* Critical loading screen styles */
         #loading-screen {
@@ -24,6 +24,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            transition: opacity 1s ease;
         }
         .zen-loader {
             position: relative;
@@ -88,7 +89,7 @@
     </style>
     
     <!-- Load main stylesheet -->
-    <link href="style.css" rel="stylesheet" media="all" onload="this.media='all'">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <!-- Zen Loading Screen -->
@@ -151,66 +152,23 @@
     <div class="kanji-signature">エライジャ</div>
 
     <script>
-        // Enhanced loading handling
-        let loadingComplete = false;
-        let minTimeElapsed = false;
-        let cssLoaded = false;
-
-        // Check if CSS is loaded
-        function checkCSSLoaded() {
-            // Check if our main stylesheet is loaded by testing a unique style
-            const testEl = document.createElement('div');
-            testEl.style.position = 'absolute';
-            document.body.appendChild(testEl);
-            
-            // Test for a specific style from the external CSS
-            const bgColor = window.getComputedStyle(testEl).backgroundColor;
-            document.body.removeChild(testEl);
-            
-            // If we have non-default styles, CSS is loaded
-            if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
-                cssLoaded = true;
-                tryHideLoadingScreen();
-            } else {
-                // Check again shortly
-                setTimeout(checkCSSLoaded, 100);
-            }
-        }
-
-        function tryHideLoadingScreen() {
-            if (loadingComplete && minTimeElapsed && cssLoaded) {
-                hideLoadingScreen();
-            }
-        }
-
-        setTimeout(() => {
-            minTimeElapsed = true;
-            tryHideLoadingScreen();
-        }, 2000);
-
-        window.addEventListener("load", function () {
-            loadingComplete = true;
-            tryHideLoadingScreen();
-        });
-
-        // Start checking for CSS load
-        setTimeout(checkCSSLoaded, 100);
-
-        function hideLoadingScreen() {
+        // Force the loading screen to disappear after 2 seconds
+        setTimeout(function() {
             const loadingScreen = document.getElementById("loading-screen");
             const mainContent = document.querySelector(".bg");
-
+            
+            // Add fade-out class to loading screen
             loadingScreen.classList.add("fade-out");
-
-            setTimeout(() => {
-                mainContent.style.visibility = "visible";
-                mainContent.classList.add("fade-in");
-            }, 300);
-
+            
+            // Show main content
+            mainContent.style.visibility = "visible";
+            mainContent.classList.add("fade-in");
+            
+            // Remove loading screen from DOM after animation completes
             setTimeout(() => {
                 loadingScreen.style.display = "none";
-            }, 1500);
-        }
+            }, 1000);
+        }, 2000); // 2000ms = 2 seconds
     </script>
 </body>
 </html>
