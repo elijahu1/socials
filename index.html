@@ -151,18 +151,22 @@
     <div id="now-playing"></div>
 
   <script>
-async function fetchNowPlaying() {
+    async function fetchNowPlaying() {
     const nowPlayingElement = document.getElementById("now-playing");
+    
+    // Remove all state classes
+    nowPlayingElement.className = '';
     
     try {
         const res = await fetch("https://nowplaying.elijahu.me/now-playing");
         const data = await res.json();
         
         if (res.status === 401) {
-            // Authentication required
+            // Authentication required state
+            nowPlayingElement.className = 'auth-required';
             nowPlayingElement.innerHTML = `
-                <a href="${data.auth_url}" target="_blank" style="color: #1db954; text-decoration: none; font-size: 14px;">
-                    🔐 Connect Spotify to see what's playing →
+                <a href="${data.auth_url}" target="_blank">
+                    🔐 Connect Spotify to see what's playing
                 </a>
             `;
             return;
@@ -173,20 +177,26 @@ async function fetchNowPlaying() {
         }
         
         if (data.message && data.message.includes("Nothing is playing")) {
+            // Not playing state
+            nowPlayingElement.className = 'not-playing';
             nowPlayingElement.innerHTML = `
-                <span style="color: #888; font-size: 14px;">
+                <span class="info">
                     🎵 Not playing anything
                 </span>
             `;
         } else if (data.track) {
+            // Currently playing state
+            nowPlayingElement.className = 'playing';
             nowPlayingElement.innerHTML = `
-                <a href="${data.url}" target="_blank" style="color: #1db954; text-decoration: none; font-size: 14px;">
+                <a href="${data.url}" target="_blank">
                     🎧 ${data.track} — ${data.artist}
                 </a>
             `;
         } else {
+            // Unknown state
+            nowPlayingElement.className = 'unknown';
             nowPlayingElement.innerHTML = `
-                <span style="color: #888; font-size: 14px;">
+                <span class="info">
                     🎵 Music status unknown
                 </span>
             `;
@@ -194,8 +204,10 @@ async function fetchNowPlaying() {
         
     } catch (err) {
         console.error('Error fetching now playing:', err);
+        // Error state
+        nowPlayingElement.className = 'error-state';
         nowPlayingElement.innerHTML = `
-            <span style="color: #ff6b6b; font-size: 14px;">
+            <span class="error">
                 🚨 Unable to connect to Spotify
             </span>
         `;
@@ -203,8 +215,10 @@ async function fetchNowPlaying() {
 }
 
 // Set initial loading state
-document.getElementById("now-playing").innerHTML = `
-    <span style="color: #888; font-size: 14px;">
+const nowPlayingElement = document.getElementById("now-playing");
+nowPlayingElement.className = 'loading';
+nowPlayingElement.innerHTML = `
+    <span class="loading">
         🔄 Loading music status...
     </span>
 `;
@@ -212,7 +226,7 @@ document.getElementById("now-playing").innerHTML = `
 // Initial fetch
 fetchNowPlaying();
 
-// Refresh every 30 seconds  
+// Refresh every 30 seconds
 setInterval(fetchNowPlaying, 30000);
 </script>
 
