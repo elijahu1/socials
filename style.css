@@ -404,53 +404,52 @@ body, html {
     outline-offset: 2px;
 }
 
-/* Spotify Now Playing Styles */
+
+/* Spotify Now Playing Styles - FIXED VERSION */
 #now-playing {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
+    z-index: 10001; /* Higher than your loading screen and kanji signature */
     
     /* Container styling */
-    background: rgba(25, 20, 20, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(29, 185, 84, 0.3);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(29, 185, 84, 0.4);
     border-radius: 25px;
-    padding: 12px 20px;
+    padding: 10px 18px;
     
     /* Text styling */
     font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
+    max-width: 90vw;
     
     /* Subtle animations */
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     opacity: 0;
-    animation: slideUp 0.5s ease forwards 1s;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(10px);
 }
 
-/* Slide up animation */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+/* Show the element when it has content */
+#now-playing:not(:empty) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Hover effects */
 #now-playing:hover {
-    background: rgba(25, 20, 20, 0.98);
-    border-color: rgba(29, 185, 84, 0.5);
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 8px 25px rgba(29, 185, 84, 0.15);
+    background: rgba(0, 0, 0, 0.95);
+    border-color: rgba(29, 185, 84, 0.7);
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.2);
 }
 
 /* Link styling inside now-playing */
@@ -458,93 +457,152 @@ body, html {
     color: #1db954;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s ease;
-    display: flex;
+    transition: all 0.2s ease;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
 }
 
 #now-playing a:hover {
     color: #1ed760;
-    text-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+    text-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
 }
 
-/* Different states styling */
+/* State-specific styling */
 #now-playing .error {
     color: #ff6b6b;
+    font-weight: 400;
 }
 
 #now-playing .info {
-    color: #888;
+    color: #cccccc;
+    font-weight: 300;
 }
 
 #now-playing .loading {
-    color: #ccc;
+    color: #aaaaaa;
+    font-weight: 300;
 }
 
 /* Pulse animation for loading state */
-#now-playing .loading {
-    animation: pulse 1.5s ease-in-out infinite;
+#now-playing.loading {
+    animation: spotifyPulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+@keyframes spotifyPulse {
+    0%, 100% { 
+        opacity: 0.7; 
+        transform: translateX(-50%) scale(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateX(-50%) scale(1.02);
+    }
 }
 
 /* Spotify green glow effect when playing */
 #now-playing.playing {
-    box-shadow: 0 0 20px rgba(29, 185, 84, 0.2);
+    border-color: rgba(29, 185, 84, 0.6);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
+    background: rgba(0, 0, 0, 0.9);
 }
 
 #now-playing.playing::before {
     content: '';
     position: absolute;
-    inset: -1px;
+    inset: -2px;
     background: linear-gradient(45deg, 
-        rgba(29, 185, 84, 0.1), 
-        rgba(30, 215, 96, 0.1),
-        rgba(29, 185, 84, 0.1)
+        rgba(29, 185, 84, 0.2), 
+        rgba(30, 215, 96, 0.3),
+        rgba(29, 185, 84, 0.2)
     );
-    border-radius: 25px;
+    border-radius: 27px;
     z-index: -1;
-    animation: spotifyGlow 3s ease-in-out infinite;
+    animation: spotifyGlow 4s ease-in-out infinite;
 }
 
 @keyframes spotifyGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
 }
 
-/* Mobile responsive */
+/* Authentication required state */
+#now-playing.auth-required {
+    border-color: rgba(255, 193, 7, 0.5);
+    background: rgba(0, 0, 0, 0.85);
+}
+
+#now-playing.auth-required a {
+    color: #ffc107;
+}
+
+#now-playing.auth-required a:hover {
+    color: #ffcd39;
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+}
+
+/* Error state */
+#now-playing.error-state {
+    border-color: rgba(255, 107, 107, 0.5);
+    background: rgba(0, 0, 0, 0.85);
+}
+
+/* Mobile responsive - adjust for your existing mobile styles */
 @media (max-width: 768px) {
     #now-playing {
-        bottom: 15px;
-        left: 15px;
-        right: 15px;
-        transform: none;
+        bottom: 80px; /* Move up to avoid kanji signature */
+        left: 20px;
+        right: 20px;
+        transform: translateX(0);
         border-radius: 20px;
-        padding: 10px 16px;
-        font-size: 13px;
+        padding: 8px 16px;
+        font-size: 12px;
+        max-width: none;
     }
     
     #now-playing:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
     }
     
     #now-playing.playing::before {
-        border-radius: 20px;
+        border-radius: 22px;
+    }
+    
+    #now-playing:not(:empty) {
+        transform: translateX(0) translateY(0);
+    }
+    
+    #now-playing.loading {
+        transform: translateX(0) scale(1);
+    }
+    
+    @keyframes spotifyPulse {
+        0%, 100% { 
+            opacity: 0.7; 
+            transform: translateX(0) scale(1);
+        }
+        50% { 
+            opacity: 1; 
+            transform: translateX(0) scale(1.02);
+        }
     }
 }
 
 /* Extra small screens */
 @media (max-width: 480px) {
     #now-playing {
-        bottom: 10px;
-        left: 10px;
-        right: 10px;
-        font-size: 12px;
-        padding: 8px 14px;
+        bottom: 70px;
+        left: 15px;
+        right: 15px;
+        font-size: 11px;
+        padding: 6px 14px;
+    }
+    
+    /* Adjust kanji signature to avoid overlap */
+    .kanji-signature {
+        bottom: 25px !important;
+        right: 15px !important;
+        font-size: 1rem !important;
     }
 }
