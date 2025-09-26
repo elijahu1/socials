@@ -404,187 +404,257 @@ body, html {
     outline-offset: 2px;
 }
 
-
-/* Spotify Now Playing Styles - FIXED VERSION */
+/* Monochrome 2025 Spotify Widget */
 #now-playing {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10001; /* Higher than your loading screen and kanji signature */
+    z-index: 10001;
     
-    /* Container styling */
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(29, 185, 84, 0.4);
-    border-radius: 25px;
-    padding: 10px 18px;
+    /* 2025 Glassmorphism Container */
+    background: rgba(248, 248, 248, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(248, 248, 248, 0.15);
+    border-radius: 50px;
+    padding: 12px 20px 12px 16px;
     
-    /* Text styling */
+    /* Typography */
     font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-size: 13px;
     font-weight: 400;
-    color: #ffffff;
+    color: var(--fg-color);
     text-align: center;
     white-space: nowrap;
     max-width: 90vw;
     
-    /* Subtle animations */
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    /* 2025 Smooth Animations */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(20px) scale(0.95);
 }
 
-/* Show the element when it has content */
+/* Show with modern entrance animation */
 #now-playing:not(:empty) {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) scale(1);
 }
 
-/* Hover effects */
+/* Audio Visualizer Bars */
+#now-playing::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 14px;
+    background: 
+        linear-gradient(to top, var(--fg-color) 0%, var(--fg-color) 100%),
+        linear-gradient(to top, var(--fg-color) 0%, var(--fg-color) 100%),
+        linear-gradient(to top, var(--fg-color) 0%, var(--fg-color) 100%),
+        linear-gradient(to top, var(--fg-color) 0%, var(--fg-color) 100%);
+    background-size: 2px 100%, 2px 100%, 2px 100%, 2px 100%;
+    background-position: 0 100%, 4px 100%, 8px 100%, 12px 100%;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Animated bars when playing */
+#now-playing.playing::before {
+    animation: audioBars 1.2s ease-in-out infinite;
+    opacity: 1;
+}
+
+@keyframes audioBars {
+    0% { 
+        background-size: 2px 30%, 2px 60%, 2px 40%, 2px 80%; 
+    }
+    25% { 
+        background-size: 2px 80%, 2px 40%, 2px 90%, 2px 30%; 
+    }
+    50% { 
+        background-size: 2px 60%, 2px 100%, 2px 50%, 2px 70%; 
+    }
+    75% { 
+        background-size: 2px 40%, 2px 30%, 2px 80%, 2px 90%; 
+    }
+    100% { 
+        background-size: 2px 30%, 2px 60%, 2px 40%, 2px 80%; 
+    }
+}
+
+/* Content wrapper to make space for audio bars */
+#now-playing .spotify-content {
+    padding-left: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Modern hover effects */
 #now-playing:hover {
-    background: rgba(0, 0, 0, 0.95);
-    border-color: rgba(29, 185, 84, 0.7);
-    transform: translateX(-50%) translateY(-3px);
-    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.2);
+    background: rgba(248, 248, 248, 0.08);
+    border-color: rgba(248, 248, 248, 0.25);
+    transform: translateX(-50%) translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(248, 248, 248, 0.1);
 }
 
-/* Link styling inside now-playing */
+#now-playing:hover::before {
+    opacity: 1;
+}
+
+/* Link styling */
 #now-playing a {
-    color: #1db954;
+    color: var(--fg-color);
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.2s ease;
-    display: inline-flex;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
     align-items: center;
-    gap: 6px;
-    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+#now-playing a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--fg-color);
+    transition: width 0.3s ease;
 }
 
 #now-playing a:hover {
-    color: #1ed760;
-    text-shadow: 0 0 8px rgba(29, 185, 84, 0.4);
+    color: var(--fg-color);
+    transform: translateY(-1px);
+}
+
+#now-playing a:hover::after {
+    width: 100%;
 }
 
 /* State-specific styling */
 #now-playing .error {
-    color: #ff6b6b;
-    font-weight: 400;
+    color: var(--accent-color);
+    opacity: 0.8;
 }
 
 #now-playing .info {
-    color: #cccccc;
-    font-weight: 300;
+    color: var(--accent-color);
+    opacity: 0.9;
 }
 
 #now-playing .loading {
-    color: #aaaaaa;
-    font-weight: 300;
+    color: var(--accent-color);
+    opacity: 0.7;
 }
 
-/* Pulse animation for loading state */
+/* Loading state with subtle pulse */
 #now-playing.loading {
-    animation: spotifyPulse 2s ease-in-out infinite;
+    animation: modernPulse 2s ease-in-out infinite;
 }
 
-@keyframes spotifyPulse {
+#now-playing.loading::before {
+    animation: loadingBars 1s ease-in-out infinite;
+}
+
+@keyframes modernPulse {
     0%, 100% { 
-        opacity: 0.7; 
+        opacity: 0.8; 
         transform: translateX(-50%) scale(1);
     }
     50% { 
         opacity: 1; 
-        transform: translateX(-50%) scale(1.02);
+        transform: translateX(-50%) scale(1.01);
     }
 }
 
-/* Spotify green glow effect when playing */
-#now-playing.playing {
-    border-color: rgba(29, 185, 84, 0.6);
-    box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
-    background: rgba(0, 0, 0, 0.9);
-}
-
-#now-playing.playing::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(45deg, 
-        rgba(29, 185, 84, 0.2), 
-        rgba(30, 215, 96, 0.3),
-        rgba(29, 185, 84, 0.2)
-    );
-    border-radius: 27px;
-    z-index: -1;
-    animation: spotifyGlow 4s ease-in-out infinite;
-}
-
-@keyframes spotifyGlow {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.7; }
+@keyframes loadingBars {
+    0%, 100% { 
+        background-size: 2px 20%, 2px 40%, 2px 30%, 2px 50%; 
+        opacity: 0.5;
+    }
+    50% { 
+        background-size: 2px 60%, 2px 80%, 2px 70%, 2px 90%; 
+        opacity: 0.8;
+    }
 }
 
 /* Authentication required state */
 #now-playing.auth-required {
-    border-color: rgba(255, 193, 7, 0.5);
-    background: rgba(0, 0, 0, 0.85);
+    border-color: rgba(248, 248, 248, 0.2);
 }
 
-#now-playing.auth-required a {
-    color: #ffc107;
+#now-playing.auth-required::before {
+    animation: staticBars 0.8s ease-in-out infinite alternate;
 }
 
-#now-playing.auth-required a:hover {
-    color: #ffcd39;
-    text-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+@keyframes staticBars {
+    0% { 
+        background-size: 2px 30%, 2px 30%, 2px 30%, 2px 30%; 
+        opacity: 0.4;
+    }
+    100% { 
+        background-size: 2px 50%, 2px 50%, 2px 50%, 2px 50%; 
+        opacity: 0.7;
+    }
 }
 
-/* Error state */
-#now-playing.error-state {
-    border-color: rgba(255, 107, 107, 0.5);
-    background: rgba(0, 0, 0, 0.85);
-}
-
-/* Mobile responsive - adjust for your existing mobile styles */
+/* 2025 Mobile Design */
 @media (max-width: 768px) {
     #now-playing {
-        bottom: 80px; /* Move up to avoid kanji signature */
+        bottom: 80px;
         left: 20px;
         right: 20px;
         transform: translateX(0);
-        border-radius: 20px;
-        padding: 8px 16px;
+        border-radius: 30px;
+        padding: 10px 16px 10px 14px;
         font-size: 12px;
         max-width: none;
     }
     
-    #now-playing:hover {
-        transform: translateY(-2px);
+    #now-playing::before {
+        left: 14px;
+        width: 16px;
+        height: 12px;
+        background-size: 1.5px 100%, 1.5px 100%, 1.5px 100%, 1.5px 100%;
+        background-position: 0 100%, 3px 100%, 6px 100%, 9px 100%;
     }
     
-    #now-playing.playing::before {
-        border-radius: 22px;
+    #now-playing .spotify-content {
+        padding-left: 24px;
+        gap: 6px;
+    }
+    
+    #now-playing:hover {
+        transform: translateY(-3px) scale(1.01);
     }
     
     #now-playing:not(:empty) {
-        transform: translateX(0) translateY(0);
+        transform: translateX(0) translateY(0) scale(1);
     }
     
     #now-playing.loading {
         transform: translateX(0) scale(1);
     }
     
-    @keyframes spotifyPulse {
+    @keyframes modernPulse {
         0%, 100% { 
-            opacity: 0.7; 
+            opacity: 0.8; 
             transform: translateX(0) scale(1);
         }
         50% { 
             opacity: 1; 
-            transform: translateX(0) scale(1.02);
+            transform: translateX(0) scale(1.01);
         }
     }
 }
@@ -596,10 +666,23 @@ body, html {
         left: 15px;
         right: 15px;
         font-size: 11px;
-        padding: 6px 14px;
+        padding: 8px 14px 8px 12px;
+        border-radius: 25px;
     }
     
-    /* Adjust kanji signature to avoid overlap */
+    #now-playing::before {
+        left: 12px;
+        width: 14px;
+        height: 10px;
+        background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+        background-position: 0 100%, 3px 100%, 6px 100%, 9px 100%;
+    }
+    
+    #now-playing .spotify-content {
+        padding-left: 22px;
+        gap: 4px;
+    }
+    
     .kanji-signature {
         bottom: 25px !important;
         right: 15px !important;

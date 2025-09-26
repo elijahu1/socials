@@ -165,9 +165,11 @@
             // Authentication required state
             nowPlayingElement.className = 'auth-required';
             nowPlayingElement.innerHTML = `
-                <a href="${data.auth_url}" target="_blank">
-                    🔐 Connect Spotify to see what's playing
-                </a>
+                <div class="spotify-content">
+                    <a href="${data.auth_url}" target="_blank">
+                        Connect Spotify
+                    </a>
+                </div>
             `;
             return;
         }
@@ -180,25 +182,32 @@
             // Not playing state
             nowPlayingElement.className = 'not-playing';
             nowPlayingElement.innerHTML = `
-                <span class="info">
-                    🎵 Not playing anything
-                </span>
+                <div class="spotify-content">
+                    <span class="info">No music playing</span>
+                </div>
             `;
         } else if (data.track) {
-            // Currently playing state
+            // Currently playing state - this triggers the animated bars
             nowPlayingElement.className = 'playing';
+            
+            // Truncate long track names for better display
+            const trackName = data.track.length > 25 ? data.track.substring(0, 25) + '...' : data.track;
+            const artistName = data.artist.length > 20 ? data.artist.substring(0, 20) + '...' : data.artist;
+            
             nowPlayingElement.innerHTML = `
-                <a href="${data.url}" target="_blank">
-                    🎧 ${data.track} — ${data.artist}
-                </a>
+                <div class="spotify-content">
+                    <a href="${data.url}" target="_blank">
+                        ${trackName} — ${artistName}
+                    </a>
+                </div>
             `;
         } else {
             // Unknown state
             nowPlayingElement.className = 'unknown';
             nowPlayingElement.innerHTML = `
-                <span class="info">
-                    🎵 Music status unknown
-                </span>
+                <div class="spotify-content">
+                    <span class="info">Music status unknown</span>
+                </div>
             `;
         }
         
@@ -207,24 +216,26 @@
         // Error state
         nowPlayingElement.className = 'error-state';
         nowPlayingElement.innerHTML = `
-            <span class="error">
-                🚨 Unable to connect to Spotify
-            </span>
+            <div class="spotify-content">
+                <span class="error">Connection failed</span>
+            </div>
         `;
     }
 }
 
-// Set initial loading state
+// Set initial loading state with animated bars
 const nowPlayingElement = document.getElementById("now-playing");
 nowPlayingElement.className = 'loading';
 nowPlayingElement.innerHTML = `
-    <span class="loading">
-        🔄 Loading music status...
-    </span>
+    <div class="spotify-content">
+        <span class="loading">Loading music...</span>
+    </div>
 `;
 
-// Initial fetch
-fetchNowPlaying();
+// Initial fetch with slight delay for smooth animation
+setTimeout(() => {
+    fetchNowPlaying();
+}, 1200);
 
 // Refresh every 30 seconds
 setInterval(fetchNowPlaying, 30000);
