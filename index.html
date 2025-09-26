@@ -151,27 +151,52 @@
     <div id="now-playing"></div>
 
 <script>
-async function fetchNowPlaying() {
+  async function fetchNowPlaying() {
     try {
         const res = await fetch("https://nowplaying.elijahu.me/now-playing");
+        
+        if (res.status === 401) {
+            // Authentication required
+            const data = await res.json();
+            document.getElementById("now-playing").innerHTML = `
+                <a href="${data.auth_url}" target="_blank" style="color: #ff6b6b;">
+                    🎧 Connect Spotify to see what's playing
+                </a>
+            `;
+            return;
+        }
+        
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const data = await res.json();
 
-        if (data.message) {
+        if (data.message && data.message.includes("Nothing is playing")) {
             document.getElementById("now-playing").innerHTML = "Not playing anything 🎵";
-        } else {
+        } else if (data.track) {
             document.getElementById("now-playing").innerHTML = `
-                <a href="${data.url}" target="_blank">
+                <a href="${data.url}" target="_blank" style="color: #1db954;">
                     🎧 ${data.track} — ${data.artist}
                 </a>
             `;
+        } else {
+            document.getElementById("now-playing").innerHTML = "🎵 Music status unknown";
         }
     } catch (err) {
-        console.error(err);
+        console.error('Error fetching now playing:', err);
+        document.getElementById("now-playing").innerHTML = `
+            <span style="color: #ff6b6b;">
+                🎧 Unable to connect to Spotify
+            </span>
+        `;
     }
 }
 
+// Initial fetch
 fetchNowPlaying();
-setInterval(fetchNowPlaying, 10000); // Refresh every 10 sec
+// Refresh every 30 seconds (reduced frequency to be more reasonable)
+setInterval(fetchNowPlaying, 30000);
 </script>
 
     <!-- Kanji Signature -->
