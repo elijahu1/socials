@@ -174,29 +174,25 @@ fetchNowPlaying();
 setInterval(fetchNowPlaying, 10000); // Refresh every 10 sec
 </script>
 
-
     <!-- Kanji Signature -->
     <div class="kanji-signature">エリヤ ♡</div>
 
     <script>
-        // Force the loading screen to disappear after 2 seconds
         setTimeout(function() {
             const loadingScreen = document.getElementById("loading-screen");
             const mainContent = document.querySelector(".bg");
             
-            // Add fade-out class to loading screen
             loadingScreen.classList.add("fade-out");
             
-            // Show main content
             mainContent.style.visibility = "visible";
             mainContent.classList.add("fade-in");
             
-            // Remove loading screen from DOM after animation completes
             setTimeout(() => {
                 loadingScreen.style.display = "none";
             }, 1000);
-        }, 800); // 2000ms = 2 seconds
+        }, 800);
     </script>
     <script src="tracking.js"></script>
 </body>
 </html>
+
