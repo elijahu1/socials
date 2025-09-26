@@ -610,33 +610,42 @@ body, html {
 }
 
 /* 2025 Mobile Design */
+
 @media (max-width: 768px) {
     #now-playing {
-        bottom: 80px;
-        left: 20px;
-        right: 20px;
+        bottom: 20px; /* Much closer to bottom */
+        left: 15px;
+        right: 15px;
         transform: translateX(0);
-        border-radius: 30px;
-        padding: 10px 16px 10px 14px;
-        font-size: 12px;
+        border-radius: 20px; /* Smaller radius */
+        padding: 6px 12px 6px 10px; /* Much more compact */
+        font-size: 11px; /* Smaller text */
         max-width: none;
+        
+        /* Less visible background */
+        background: rgba(248, 248, 248, 0.03);
+        border-color: rgba(248, 248, 248, 0.1);
+        opacity: 0.8; /* Slightly transparent by default */
     }
     
     #now-playing::before {
-        left: 14px;
-        width: 16px;
-        height: 12px;
-        background-size: 1.5px 100%, 1.5px 100%, 1.5px 100%, 1.5px 100%;
-        background-position: 0 100%, 3px 100%, 6px 100%, 9px 100%;
+        left: 10px;
+        width: 12px; /* Smaller bars */
+        height: 8px;
+        background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%;
+        background-position: 0 100%, 2.5px 100%, 5px 100%, 7.5px 100%;
+        opacity: 0.6; /* More subtle bars */
     }
     
     #now-playing .spotify-content {
-        padding-left: 24px;
-        gap: 6px;
+        padding-left: 18px; /* Less padding */
+        gap: 4px;
     }
     
     #now-playing:hover {
-        transform: translateY(-3px) scale(1.01);
+        transform: translateY(-1px) scale(1.01); /* Less dramatic hover */
+        opacity: 1;
+        background: rgba(248, 248, 248, 0.05);
     }
     
     #now-playing:not(:empty) {
@@ -647,45 +656,118 @@ body, html {
         transform: translateX(0) scale(1);
     }
     
+    /* Kanji signature moves up to avoid overlap */
+    .kanji-signature {
+        bottom: 55px !important; /* Move well above the widget */
+        right: 15px !important;
+        font-size: 0.9rem !important;
+        opacity: 0.5 !important; /* More subtle */
+    }
+    
     @keyframes modernPulse {
         0%, 100% { 
-            opacity: 0.8; 
+            opacity: 0.7; 
             transform: translateX(0) scale(1);
         }
         50% { 
-            opacity: 1; 
-            transform: translateX(0) scale(1.01);
+            opacity: 0.9; 
+            transform: translateX(0) scale(1.005); /* Very subtle pulse */
         }
     }
 }
 
-/* Extra small screens */
+/* Extra small screens - even more compact */
 @media (max-width: 480px) {
     #now-playing {
-        bottom: 70px;
-        left: 15px;
-        right: 15px;
-        font-size: 11px;
-        padding: 8px 14px 8px 12px;
-        border-radius: 25px;
+        bottom: 15px; /* Very close to bottom */
+        left: 10px;
+        right: 10px;
+        font-size: 10px; /* Even smaller text */
+        padding: 5px 10px 5px 8px; /* Very compact */
+        border-radius: 15px;
+        
+        /* Almost invisible background */
+        background: rgba(248, 248, 248, 0.02);
+        border-color: rgba(248, 248, 248, 0.08);
+        opacity: 0.7;
     }
     
     #now-playing::before {
-        left: 12px;
-        width: 14px;
-        height: 10px;
+        left: 8px;
+        width: 10px; /* Even smaller bars */
+        height: 6px;
         background-size: 1px 100%, 1px 100%, 1px 100%, 1px 100%;
-        background-position: 0 100%, 3px 100%, 6px 100%, 9px 100%;
+        background-position: 0 100%, 2px 100%, 4px 100%, 6px 100%;
+        opacity: 0.5;
     }
     
     #now-playing .spotify-content {
-        padding-left: 22px;
-        gap: 4px;
+        padding-left: 16px;
+        gap: 2px;
+    }
+    
+    /* Move kanji signature higher */
+    .kanji-signature {
+        bottom: 50px !important; /* Even higher */
+        right: 12px !important;
+        font-size: 0.8rem !important;
+        opacity: 0.4 !important;
+    }
+    
+    /* Make all text more compact */
+    #now-playing a, 
+    #now-playing span {
+        font-weight: 300; /* Lighter weight */
+        letter-spacing: -0.02em; /* Tighter spacing */
+    }
+}
+
+/* Ultra compact for very small screens */
+@media (max-width: 375px) {
+    #now-playing {
+        bottom: 12px;
+        left: 8px;
+        right: 8px;
+        font-size: 9px;
+        padding: 4px 8px 4px 6px;
+        border-radius: 12px;
+        opacity: 0.6; /* Very subtle */
+    }
+    
+    #now-playing::before {
+        left: 6px;
+        width: 8px;
+        height: 5px;
+        background-size: 0.8px 100%, 0.8px 100%, 0.8px 100%, 0.8px 100%;
+        background-position: 0 100%, 1.5px 100%, 3px 100%, 4.5px 100%;
+        opacity: 0.4;
+    }
+    
+    #now-playing .spotify-content {
+        padding-left: 14px;
+        gap: 1px;
     }
     
     .kanji-signature {
-        bottom: 25px !important;
-        right: 15px !important;
-        font-size: 1rem !important;
+        bottom: 45px !important;
+        right: 10px !important;
+        font-size: 0.7rem !important;
+        opacity: 0.3 !important;
     }
+    
+    /* Auto-hide after a few seconds on tiny screens */
+    #now-playing {
+        animation: fadeToBackground 6s ease-in-out forwards;
+    }
+    
+    #now-playing:hover,
+    #now-playing:active {
+        animation: none;
+        opacity: 1 !important;
+    }
+}
+
+@keyframes fadeToBackground {
+    0%, 60% { opacity: 0.6; }
+    100% { opacity: 0.2; }
 }
