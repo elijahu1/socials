@@ -148,6 +148,33 @@
         </div>
     </div>
 
+    <div id="now-playing"></div>
+
+<script>
+async function fetchNowPlaying() {
+    try {
+        const res = await fetch("https://nowplaying.elijahu.me/now-playing");
+        const data = await res.json();
+
+        if (data.message) {
+            document.getElementById("now-playing").innerHTML = "Not playing anything 🎵";
+        } else {
+            document.getElementById("now-playing").innerHTML = `
+                <a href="${data.url}" target="_blank">
+                    🎧 ${data.track} — ${data.artist}
+                </a>
+            `;
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+fetchNowPlaying();
+setInterval(fetchNowPlaying, 10000); // Refresh every 10 sec
+</script>
+
+
     <!-- Kanji Signature -->
     <div class="kanji-signature">エリヤ ♡</div>
 
