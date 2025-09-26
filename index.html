@@ -150,17 +150,19 @@
 
     <div id="now-playing"></div>
 
-<script>
-  async function fetchNowPlaying() {
+  <script>
+async function fetchNowPlaying() {
+    const nowPlayingElement = document.getElementById("now-playing");
+    
     try {
         const res = await fetch("https://nowplaying.elijahu.me/now-playing");
+        const data = await res.json();
         
         if (res.status === 401) {
             // Authentication required
-            const data = await res.json();
-            document.getElementById("now-playing").innerHTML = `
-                <a href="${data.auth_url}" target="_blank" style="color: #ff6b6b;">
-                    🎧 Connect Spotify to see what's playing
+            nowPlayingElement.innerHTML = `
+                <a href="${data.auth_url}" target="_blank" style="color: #1db954; text-decoration: none; font-size: 14px;">
+                    🔐 Connect Spotify to see what's playing →
                 </a>
             `;
             return;
@@ -170,32 +172,47 @@
             throw new Error(`HTTP error! status: ${res.status}`);
         }
         
-        const data = await res.json();
-
         if (data.message && data.message.includes("Nothing is playing")) {
-            document.getElementById("now-playing").innerHTML = "Not playing anything 🎵";
+            nowPlayingElement.innerHTML = `
+                <span style="color: #888; font-size: 14px;">
+                    🎵 Not playing anything
+                </span>
+            `;
         } else if (data.track) {
-            document.getElementById("now-playing").innerHTML = `
-                <a href="${data.url}" target="_blank" style="color: #1db954;">
+            nowPlayingElement.innerHTML = `
+                <a href="${data.url}" target="_blank" style="color: #1db954; text-decoration: none; font-size: 14px;">
                     🎧 ${data.track} — ${data.artist}
                 </a>
             `;
         } else {
-            document.getElementById("now-playing").innerHTML = "🎵 Music status unknown";
+            nowPlayingElement.innerHTML = `
+                <span style="color: #888; font-size: 14px;">
+                    🎵 Music status unknown
+                </span>
+            `;
         }
+        
     } catch (err) {
         console.error('Error fetching now playing:', err);
-        document.getElementById("now-playing").innerHTML = `
-            <span style="color: #ff6b6b;">
-                🎧 Unable to connect to Spotify
+        nowPlayingElement.innerHTML = `
+            <span style="color: #ff6b6b; font-size: 14px;">
+                🚨 Unable to connect to Spotify
             </span>
         `;
     }
 }
 
+// Set initial loading state
+document.getElementById("now-playing").innerHTML = `
+    <span style="color: #888; font-size: 14px;">
+        🔄 Loading music status...
+    </span>
+`;
+
 // Initial fetch
 fetchNowPlaying();
-// Refresh every 30 seconds (reduced frequency to be more reasonable)
+
+// Refresh every 30 seconds  
 setInterval(fetchNowPlaying, 30000);
 </script>
 
