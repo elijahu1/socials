@@ -514,7 +514,7 @@ body, html {
 #now-playing a {
     color: var(--fg-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: flex;
     align-items: center;
@@ -717,7 +717,7 @@ body, html {
     /* Make all text more compact */
     #now-playing a, 
     #now-playing span {
-        font-weight: 300; /* Lighter weight */
+        font-weight: 600; /* Lighter weight */
         letter-spacing: -0.02em; /* Tighter spacing */
     }
 }
