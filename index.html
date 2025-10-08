@@ -3,11 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Elijah Udom - Cloud Infrastructure Engineer | Linux Specialist | DevOps Practitioner">
-    <meta name="keywords" content="Cloud Engineering, AWS Certified, Linux Administration, Infrastructure as Code, Cloud Security">
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect</title>
+    <meta name="description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation. Connect with Elijah Udom for cloud engineering expertise.">
+    <meta name="keywords" content="Cloud Engineering, AWS Solutions Architect, DevOps Engineer, Linux Administration, Infrastructure as Code, Cloud Security, Terraform, Kubernetes, Docker, CI/CD">
     <meta name="author" content="Elijah Udom">
-    <title>Elijah Udom - Cloud Infrastructure Engineer</title>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elijahu.me/">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elijahu.me/">
+    <meta property="og:title" content="Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect">
+    <meta property="og:description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
+    <meta property="og:image" content="https://assets.elijahu.me/author-elijah.jpg">
+    <meta property="og:image:alt" content="Elijah Udom - Cloud Infrastructure Engineer">
+    <meta property="og:site_name" content="Elijah Udom">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://elijahu.me/">
+    <meta name="twitter:title" content="Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect">
+    <meta name="twitter:description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
+    <meta name="twitter:image" content="https://assets.elijahu.me/author-elijah.jpg">
+    <meta name="twitter:creator" content="@elijahu">
+    <meta name="twitter:site" content="@elijahu">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#000000">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Elijah Udom",
+      "url": "https://elijahu.me",
+      "image": "https://assets.elijahu.me/author-elijah.jpg",
+      "jobTitle": "Cloud Infrastructure Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cloud Infrastructure Engineering"
+      },
+      "description": "DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.",
+      "sameAs": [
+        "https://www.linkedin.com/in/elijahu",
+        "https://github.com/elijahu1",
+        "https://x.com/elijahu",
+        "https://bsky.app/profile/elijahu.bsky.social"
+      ],
+      "knowsAbout": [
+        "Cloud Engineering",
+        "AWS",
+        "DevOps",
+        "Linux Administration",
+        "Infrastructure as Code",
+        "Cloud Security"
+      ]
+    }
+    </script>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -93,14 +150,14 @@
 </head>
 <body>
     <!-- Zen Loading Screen -->
-    <div id="loading-screen">
-        <div class="zen-loader">
+    <div id="loading-screen" role="status" aria-label="Loading page content">
+        <div class="zen-loader" aria-hidden="true">
             <div class="zen-circle"></div>
             <div class="zen-inner"></div>
         </div>
         <div class="loading-text">
             <span>接続中</span>
-            <div class="dots">
+            <div class="dots" aria-hidden="true">
                 <span>・</span>
                 <span>・</span>
                 <span>・</span>
@@ -108,47 +165,47 @@
         </div>
     </div>
 
-    <div class="bg">
+    <main class="bg">
         <div class="content">
-            <div class="profile">
+            <header class="profile">
                 <div class="profile-image">
-                    <img src="https://assets.elijahu.me/author-elijah.jpg" alt="Elijah Udom" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="https://assets.elijahu.me/author-elijah.jpg" alt="Elijah Udom - Cloud Infrastructure Engineer" width="150" height="150" onerror="this.src='https://via.placeholder.com/150'">
                 </div>
-            </div>
-            <div class="description">
-                <h4>Hey there! I'm Elijah <span class="wave">👋</span></h4>
-                <p>DevOps Engineer | SysAdmin | AWS Solutions Architect</p>
-                <p>Let's build something amazing together! <span class="sparkle">✨</span></p>
-            </div>
-            <div class="links">
-                <a href="https://elijahu.me/portfolio" target="_blank" class="link-card">
-                    <i class="fas fa-cog"></i>
+            </header>
+            <section class="description">
+                <h1>Hey there! I'm Elijah <span class="wave" aria-hidden="true">👋</span></h1>
+                <h2>DevOps Engineer | SysAdmin | AWS Solutions Architect</h2>
+                <p>Let's build something amazing together! <span class="sparkle" aria-hidden="true">✨</span></p>
+            </section>
+            <nav class="links" aria-label="Social media and portfolio links">
+                <a href="https://elijahu.me/portfolio" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="View my projects and portfolio">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
                     <span>Projects</span>
                 </a>
-                <a href="https://www.linkedin.com/in/elijahu" target="_blank" class="link-card">
-                    <i class="fa-brands fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/elijahu" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="Connect with me on LinkedIn">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                     <span>LinkedIn</span>
                 </a>
-                <a href="https://github.com/elijahu1" target="_blank" class="link-card">
-                    <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/elijahu1" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="View my GitHub repositories">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="https://x.com/elijahu" target="_blank" class="link-card">
-                    <i class="fa-brands fa-x-twitter"></i>
+                <a href="https://x.com/elijahu" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="Follow me on X (Twitter)">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                     <span>X (Twitter)</span>
                 </a>
-                <a href="https://bsky.app/profile/elijahu.bsky.social" target="_blank" class="link-card">
-                    <i class="fa-solid fa-cloud"></i>
+                <a href="https://bsky.app/profile/elijahu.bsky.social" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="Follow me on Bluesky">
+                    <i class="fa-solid fa-cloud" aria-hidden="true"></i>
                     <span>Bluesky</span>
                 </a>
-            </div>
-            <div class="footer">
-                <p>Inspirado por <a href="https://open.spotify.com/playlist/6Bs20Qukh6xYzJsz8quNZG?si=D25Y-EJaQpKrGMVLJI55BQ">BeNiTO</a> 🇵🇷</p>
-            </div>
+            </nav>
+            <footer class="footer">
+                <p>Inspirado por <a href="https://open.spotify.com/playlist/6Bs20Qukh6xYzJsz8quNZG?si=D25Y-EJaQpKrGMVLJI55BQ" target="_blank" rel="noopener noreferrer">BeNiTO</a> 🇵🇷</p>
+            </footer>
         </div>
-    </div>
+    </main>
 
-    <div id="now-playing"></div>
+    <aside id="now-playing" aria-live="polite" aria-label="Currently playing music"></aside>
 
   <script>
     async function fetchNowPlaying() {
@@ -166,7 +223,7 @@
             nowPlayingElement.className = 'auth-required';
             nowPlayingElement.innerHTML = `
                 <div class="spotify-content">
-                    <a href="${data.auth_url}" target="_blank">
+                    <a href="${data.auth_url}" target="_blank" rel="noopener noreferrer">
                         Connect Spotify
                     </a>
                 </div>
@@ -196,7 +253,7 @@
             
             nowPlayingElement.innerHTML = `
                 <div class="spotify-content">
-                    <a href="${data.url}" target="_blank">
+                    <a href="${data.url}" target="_blank" rel="noopener noreferrer">
                         ${trackName} — ${artistName}
                     </a>
                 </div>
@@ -242,7 +299,7 @@ setInterval(fetchNowPlaying, 1000);
 </script>
 
     <!-- Kanji Signature -->
-    <div class="kanji-signature">エリヤ ♡</div>
+    <div class="kanji-signature" aria-hidden="true">エリヤ ♡</div>
 
     <script>
         setTimeout(function() {
@@ -262,4 +319,3 @@ setInterval(fetchNowPlaying, 1000);
     <script src="tracking.js"></script>
 </body>
 </html>
-
