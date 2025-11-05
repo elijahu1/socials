@@ -32,6 +32,10 @@ jobs:
               cd socials
               git checkout main
               git pull origin main
+
+              # Hard reset for changes to apply
+              git fetch origin 
+              git reset --hard origin/main
               
               # Go back to the docker-compose directory
               cd /home/ubuntu/social-prod
