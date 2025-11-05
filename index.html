@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Enhanced SEO Meta Tags -->
-    <title>Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect</title>
-    <meta name="description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation. Connect with Elijah Udom for cloud engineering expertise.">
-    <meta name="keywords" content="Cloud Engineering, AWS Solutions Architect, DevOps Engineer, Linux Administration, Infrastructure as Code, Cloud Security, Terraform, Kubernetes, Docker, CI/CD">
+    <title>Elijah Udom | Cloud & Infrastructure Engineer (elijahu)</title>
+    <meta name="description" content="DevOps Engineer specializing in cloud infrastructure, Linux system administration, and infrastructure automation. Connect with Elijah Udom for cloud engineering expertise.">
+    <meta name="keywords" content="Cloud Engineering, DevOps Engineer, Linux Administration, Infrastructure as Code, Cloud Security, Terraform, Kubernetes, Docker, CI/CD">
     <meta name="author" content="Elijah Udom">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elijahu.me/">
+    <link rel="canonical" href="https://social.elijahu.me/">
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://elijahu.me/">
-    <meta property="og:title" content="Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect">
-    <meta property="og:description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
+    <meta property="og:url" content="https://social.elijahu.me/">
+    <meta property="og:title" content="Elijah Udom | Cloud & Infrastructure Engineer (elijahu)">
+    <meta property="og:description" content="DevOps Engineer specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
     <meta property="og:image" content="https://assets.elijahu.me/author-elijah.jpg">
-    <meta property="og:image:alt" content="Elijah Udom - Cloud Infrastructure Engineer">
+    <meta property="og:image:alt" content="Elijah Udom - Cloud & Infrastructure Engineer">
     <meta property="og:site_name" content="Elijah Udom">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://elijahu.me/">
-    <meta name="twitter:title" content="Elijah Udom | Cloud Infrastructure Engineer & AWS Solutions Architect">
-    <meta name="twitter:description" content="DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
+    <meta name="twitter:url" content="https://social.elijahu.me/">
+    <meta name="twitter:title" content="Elijah Udom | Cloud & Infrastructure Engineer (elijahu)">
+    <meta name="twitter:description" content="DevOps Engineer specializing in cloud infrastructure, Linux system administration, and infrastructure automation.">
     <meta name="twitter:image" content="https://assets.elijahu.me/author-elijah.jpg">
     <meta name="twitter:creator" content="@elijahu">
     <meta name="twitter:site" content="@elijahu">
@@ -40,14 +40,14 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Elijah Udom",
-      "url": "https://elijahu.me",
+      "url": "https://social.elijahu.me",
       "image": "https://assets.elijahu.me/author-elijah.jpg",
-      "jobTitle": "Cloud Infrastructure Engineer",
+      "jobTitle": "Cloud & Infrastructure Engineer",
       "worksFor": {
         "@type": "Organization",
         "name": "Cloud Infrastructure Engineering"
       },
-      "description": "DevOps Engineer and AWS Solutions Architect specializing in cloud infrastructure, Linux system administration, and infrastructure automation.",
+      "description": "DevOps Engineer specializing in cloud infrastructure, Linux system administration, and infrastructure automation.",
       "sameAs": [
         "https://www.linkedin.com/in/elijahu",
         "https://github.com/elijahu1",
@@ -56,7 +56,6 @@
       ],
       "knowsAbout": [
         "Cloud Engineering",
-        "AWS",
         "DevOps",
         "Linux Administration",
         "Infrastructure as Code",
@@ -169,12 +168,12 @@
         <div class="content">
             <header class="profile">
                 <div class="profile-image">
-                    <img src="https://assets.elijahu.me/author-elijah.jpg" alt="Elijah Udom - Cloud Infrastructure Engineer" width="150" height="150" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="https://assets.elijahu.me/author-elijah.jpg" alt="Elijah Udom - Cloud & Infrastructure Engineer" width="150" height="150" onerror="this.src='https://via.placeholder.com/150'">
                 </div>
             </header>
             <section class="description">
                 <h1>Hey there! I'm Elijah <span class="wave" aria-hidden="true">👋</span></h1>
-                <h2>DevOps Engineer | SysAdmin | AWS Solutions Architect</h2>
+                <h2>DevOps Engineer | SysAdmin | Cloud & Infrastructure Engineer</h2>
                 <p>Let's build something amazing together! <span class="sparkle" aria-hidden="true">✨</span></p>
             </section>
             <nav class="links" aria-label="Social media and portfolio links">
@@ -207,115 +206,57 @@
 
     <aside id="now-playing" aria-live="polite" aria-label="Currently playing music"></aside>
 
-  <script>
+    <script>
     async function fetchNowPlaying() {
-    const nowPlayingElement = document.getElementById("now-playing");
-    
-    // Remove all state classes
-    nowPlayingElement.className = '';
-    
-    try {
-        const res = await fetch("https://nowplaying.elijahu.me/now-playing");
-        const data = await res.json();
-        
-        if (res.status === 401) {
-            // Authentication required state
-            nowPlayingElement.className = 'auth-required';
-            nowPlayingElement.innerHTML = `
-                <div class="spotify-content">
-                    <a href="${data.auth_url}" target="_blank" rel="noopener noreferrer">
-                        Connect Spotify
-                    </a>
-                </div>
-            `;
-            return;
+        const nowPlayingElement = document.getElementById("now-playing");
+        nowPlayingElement.className = '';
+        try {
+            const res = await fetch("https://nowplaying.elijahu.me/now-playing");
+            const data = await res.json();
+            if (res.status === 401) {
+                nowPlayingElement.className = 'auth-required';
+                nowPlayingElement.innerHTML = `<div class="spotify-content"><a href="${data.auth_url}" target="_blank" rel="noopener noreferrer">Connect Spotify</a></div>`;
+                return;
+            }
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            if (data.message && data.message.includes("Nothing is playing")) {
+                nowPlayingElement.className = 'not-playing';
+                nowPlayingElement.innerHTML = `<div class="spotify-content"><span class="info">No music playing</span></div>`;
+            } else if (data.track) {
+                nowPlayingElement.className = 'playing';
+                const trackName = data.track.length > 25 ? data.track.substring(0, 25) + '...' : data.track;
+                const artistName = data.artist.length > 20 ? data.artist.substring(0, 20) + '...' : data.artist;
+                nowPlayingElement.innerHTML = `<div class="spotify-content"><a href="${data.url}" target="_blank" rel="noopener noreferrer">${trackName} — ${artistName}</a></div>`;
+            } else {
+                nowPlayingElement.className = 'unknown';
+                nowPlayingElement.innerHTML = `<div class="spotify-content"><span class="info">Music status unknown</span></div>`;
+            }
+        } catch (err) {
+            console.error('Error fetching now playing:', err);
+            nowPlayingElement.className = 'error-state';
+            nowPlayingElement.innerHTML = `<div class="spotify-content"><span class="error">Connection failed</span></div>`;
         }
-        
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        
-        if (data.message && data.message.includes("Nothing is playing")) {
-            // Not playing state
-            nowPlayingElement.className = 'not-playing';
-            nowPlayingElement.innerHTML = `
-                <div class="spotify-content">
-                    <span class="info">No music playing</span>
-                </div>
-            `;
-        } else if (data.track) {
-            // Currently playing state - this triggers the animated bars
-            nowPlayingElement.className = 'playing';
-            
-            // Truncate long track names for better display
-            const trackName = data.track.length > 25 ? data.track.substring(0, 25) + '...' : data.track;
-            const artistName = data.artist.length > 20 ? data.artist.substring(0, 20) + '...' : data.artist;
-            
-            nowPlayingElement.innerHTML = `
-                <div class="spotify-content">
-                    <a href="${data.url}" target="_blank" rel="noopener noreferrer">
-                        ${trackName} — ${artistName}
-                    </a>
-                </div>
-            `;
-        } else {
-            // Unknown state
-            nowPlayingElement.className = 'unknown';
-            nowPlayingElement.innerHTML = `
-                <div class="spotify-content">
-                    <span class="info">Music status unknown</span>
-                </div>
-            `;
-        }
-        
-    } catch (err) {
-        console.error('Error fetching now playing:', err);
-        // Error state
-        nowPlayingElement.className = 'error-state';
-        nowPlayingElement.innerHTML = `
-            <div class="spotify-content">
-                <span class="error">Connection failed</span>
-            </div>
-        `;
     }
-}
+    const nowPlayingElement = document.getElementById("now-playing");
+    nowPlayingElement.className = 'loading';
+    nowPlayingElement.innerHTML = `<div class="spotify-content"><span class="loading">Loading music...</span></div>`;
+    setTimeout(() => { fetchNowPlaying(); }, 1200);
+    setInterval(fetchNowPlaying, 1000);
+    </script>
 
-// Set initial loading state with animated bars
-const nowPlayingElement = document.getElementById("now-playing");
-nowPlayingElement.className = 'loading';
-nowPlayingElement.innerHTML = `
-    <div class="spotify-content">
-        <span class="loading">Loading music...</span>
-    </div>
-`;
-
-// Initial fetch with slight delay for smooth animation
-setTimeout(() => {
-    fetchNowPlaying();
-}, 1200);
-
-// Refresh every 1 seconds
-setInterval(fetchNowPlaying, 1000);
-</script>
-
-    <!-- Kanji Signature -->
     <div class="kanji-signature" aria-hidden="true">エリヤ ♡</div>
 
     <script>
         setTimeout(function() {
             const loadingScreen = document.getElementById("loading-screen");
             const mainContent = document.querySelector(".bg");
-            
             loadingScreen.classList.add("fade-out");
-            
             mainContent.style.visibility = "visible";
             mainContent.classList.add("fade-in");
-            
-            setTimeout(() => {
-                loadingScreen.style.display = "none";
-            }, 1000);
+            setTimeout(() => { loadingScreen.style.display = "none"; }, 1000);
         }, 800);
     </script>
     <script src="tracking.js"></script>
 </body>
 </html>
+
